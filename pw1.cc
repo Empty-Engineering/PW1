@@ -12,27 +12,19 @@
 
 void setup(){
     pinMode(plat_in, INPUT);
-    pinMode(TSIC_in, INPUT);
+    pinMode(TSIC301_in, INPUT);
     pinMode(T18B20_in, INPUT);
     Serial.begin(9600);
-}
+
 void loop(){
-    float plat_temp = analogRead(plat_in);
-    float T01C_temp = analogRead(T01C_in);
-    float T18B20_temp = analogRead(T18B20_in);
-    //PT1000 split by 330 ohm resistor, 5v input, the sensor is 100 ohm at 0C.
-    float plat_temp_C = (plat_temp/4095)*5*100 - 273.15;
-    //TSIC 301 unsplit, 5v input
-    float T01C_temp_C = (T01C_temp/4095)*5*100 - 273.15;
-    //18B20 unplit, 5v input
-    float T18B20_temp_C = (T18B20_temp/4095)*5*100 - 273.15;
+    float plat = analogRead(plat_in);
+    float TSIC301 = analogRead(TSIC301_in);
+    float T18B20 = analogRead(T18B20_in);
     Serial.print("Platinum: ");
-    Serial.print(plat_temp_C);
-    Serial.print(" TSIC301: ");
-    Serial.print(T01C_temp_C);
-    Serial.print(" 18B20: ");
-    Serial.println(T18B20_temp_C);
+    Serial.print(plat);
+    Serial.print("TSIC301: ");
+    Serial.print(TSIC301);
+    Serial.print("T18B20: ");
+    Serial.print(T18B20);
     delay(1000);
 }
-
-
